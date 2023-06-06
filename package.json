@@ -1,6 +1,6 @@
 {
   "name": "@1024pix/eslint-plugin-no-sinon-stub-with-args-oneliner",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "An eslint rule to avoid chaining `sinon.stub()` and `withArgs()` in a one-liner which could cause issues.",
   "main": "index.js",
   "scripts": {
