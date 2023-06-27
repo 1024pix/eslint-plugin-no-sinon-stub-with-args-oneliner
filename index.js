@@ -1,5 +1,12 @@
 'use strict';
 
+function report(context, node) {
+  context.report({
+    node: node,
+    messageId: 'chainError',
+  });
+}
+
 module.exports = {
   meta: {
     type: 'problem',
@@ -14,12 +21,21 @@ module.exports = {
   },
   create: function (context) {
     return {
-      'MemberExpression[property.name="withArgs"] > CallExpression > MemberExpression[property.name="stub"][object.name="sinon"]':
+      'VariableDeclarator > CallExpression > MemberExpression[property.name="returns"] > CallExpression > MemberExpression[property.name="withArgs"] > CallExpression > MemberExpression[property.name="stub"][object.name="sinon"]':
         function (node) {
-          context.report({
-            node: node,
-            messageId: 'chainError',
-          });
+          report(context, node);
+        },
+      'VariableDeclarator > CallExpression > MemberExpression[property.name="throws"] > CallExpression > MemberExpression[property.name="withArgs"] > CallExpression > MemberExpression[property.name="stub"][object.name="sinon"]':
+        function (node) {
+          report(context, node);
+        },
+      'VariableDeclarator > CallExpression > MemberExpression[property.name="resolves"] > CallExpression > MemberExpression[property.name="withArgs"] > CallExpression > MemberExpression[property.name="stub"][object.name="sinon"]':
+        function (node) {
+          report(context, node);
+        },
+      'VariableDeclarator > CallExpression > MemberExpression[property.name="rejects"] > CallExpression > MemberExpression[property.name="withArgs"] > CallExpression > MemberExpression[property.name="stub"][object.name="sinon"]':
+        function (node) {
+          report(context, node);
         },
     };
   },
